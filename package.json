@@ -1,0 +1,27 @@
+{
+  "name": "yuxd.me",
+  "version": "1.0.0",
+  "description": "self",
+  "main": "index.html",
+  "dependencies": {
+    "github-markdown-css": "^2.8.0",
+    "markdown": "^0.5.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "none"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yulodl/yuxd.me.git"
+  },
+  "keywords": [
+    "play"
+  ],
+  "author": "yuxd",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yulodl/yuxd.me/issues"
+  },
+  "homepage": "https://github.com/yulodl/yuxd.me#readme"
+}

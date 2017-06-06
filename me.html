@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>MarkDown Editor</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <script src="/js/showdown.min.js"></script>
+    <script>
+      var converter = new showdown.Converter();
+      function Editor(input, preview) {
+        this.update = function () {
+          preview.innerHTML = converter.makeHtml(input.innerText);
+        };
+        input.editor = this;
+        this.update();
+      }
+      var qs = function (s) { return document.querySelector(s); };
+      var inputEl = null;
+      document.addEventListener('DOMContentLoaded', function() {
+        inputEl = qs('.input');
+        new Editor(inputEl, qs('.preview'));
+        inputEl.addEventListener('keydown', function(e) {
+          if (e.keyCode === 9) { // tab pressed
+            document.execCommand('insertHTML', false, '&#009');
+            e.preventDefault();
+          }
+        });
+        inputEl.addEventListener('keyup', function(e) {
+          inputEl.editor.update();
+        });
+        inputEl.addEventListener('paste', function(e) {
+            e.preventDefault();
+            var text = e.clipboardData.getData("text/plain");
+            document.execCommand("insertHTML", false, text);
+        });
+      });
+    </script>
+    <link rel="stylesheet" href="/css/github-markdown.css">
+    <style>
+html, body{
+  padding: 0;
+  margin: 0;
+}
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+}
+.input, .preview {
+  width: 50%;
+  padding: 20px;
+  border: 1px solid black;
+}
+.input {
+  outline: none;
+  white-space: pre-wrap;
+}
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="input" contenteditable="true">Left **Markdown**, Right **Preview**.</div>
+      <div class="preview markdown-body"></div>
+    </div>
+  </body>
+</html>
